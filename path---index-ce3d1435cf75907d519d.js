@@ -1,0 +1,2 @@
+webpackJsonp([0x81b8806e4260],{"./node_modules/json-loader/index.js!./.cache/json/index.json":function(e,t){e.exports={data:{site:{siteMetadata:{title:"Mal Types!"}},allMarkdownRemark:{edges:[{node:{excerpt:"Blog, get! This years October Resolution (A  hallowed  tradition), was to actually get on top\nof this whole having a blog thing. As you can…",frontmatter:{path:"/shape-anew/",date:"01 October, 2017",title:"Shape Anew"}}}]}},pathContext:{}}}});
+//# sourceMappingURL=path---index-ce3d1435cf75907d519d.js.map
