@@ -1,6 +1,7 @@
 import React from 'react'
 import Radium from 'radium'
 import Link from 'gatsby-link'
+import debounce from "lodash/debounce"
 
 import { rhythm } from '../../utils/typography'
 import { cutePurple, darkPurple, white } from '../../utils/colors'
@@ -12,6 +13,7 @@ const KEY = '34b06f42df5849649b287bb96ff76b40'
 
 const STRINGS = {
   NO_CAT: 'I only describe cats, and I cannot discern a cat here.',
+  BAD_URL: 'Invalid URL',
   UNKNOWN_ERROR: 'Something internety went wrong.',
   DESCRIPTION: `
     I recently attended ConFoo in Vancouver, and one of the cool trending topics there was cognitive services.
@@ -66,7 +68,7 @@ class DescribeMyCat extends React.Component {
         {
           error && (
             <div style={styles.stackChild}>
-              <p style={styles.error}>Loading....</p>
+              <p style={styles.error}>{error}</p>
             </div>
           )
         }
@@ -95,9 +97,18 @@ class DescribeMyCat extends React.Component {
     )
   }
 
-  handlePathChange = ({target: {value}}) => {
+  handlePathChange = debounce((event) => {
+    const {value} = event.target;
+
+    try {
+      new URL(value)
+    } catch (error) {
+      this.setState({error: STRINGS.BAD_URL})
+      return
+    }
+
     this.fetchImageData(value)
-  }
+  }, 1000, {leading: true})
 
   fetchImageData = (url = RANDOM_CAT) => {
     fetch(url)
