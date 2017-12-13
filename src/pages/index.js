@@ -8,6 +8,7 @@ import { rhythm } from '../utils/typography'
 import { cutePurple, darkPurple } from '../utils/colors'
 import Bio from '../components/Bio'
 import Fade from '../components/Fade'
+import {FRONT_MATTER as DESCRIBE_CAT_FRONT_MATTER} from './describe-me-cat';
 
 class BlogIndex extends React.Component {
   render() {
@@ -20,33 +21,16 @@ class BlogIndex extends React.Component {
           <Helmet title={get(this, 'props.data.site.siteMetadata.title')} />
           <Bio />
           <hr />
+          <Post {...DESCRIBE_CAT_FRONT_MATTER} />
           {posts.map(post => {
             if (post.node.path !== '/404/') {
               const title = get(post, 'node.frontmatter.title') || post.node.path
               return (
-                <div key={post.node.frontmatter.path}>
-                  <h3
-                    style={{
-                      marginBottom: rhythm(1 / 4),
-                    }}
-                  >
-                    <Link
-                      style={{
-                        textDecoration: 'none',
-                        color: cutePurple.hex(),
-                        ':hover': {
-                          color: darkPurple.hex(),
-                          textDecoration: 'underline',
-                        }
-                      }}
-                      to={post.node.frontmatter.path}
-                    >
-                      {post.node.frontmatter.title}
-                    </Link>
-                  </h3>
-                  <small>{post.node.frontmatter.date}</small>
-                  <p dangerouslySetInnerHTML={{ __html: post.node.excerpt }} />
-                </div>
+                <Post
+                  key={title}
+                  excerpt={post.node.excerpt}
+                  {...post.node.frontmatter}
+                />
               )
             }
           })}
@@ -54,6 +38,34 @@ class BlogIndex extends React.Component {
       </div>
     )
   }
+}
+
+function Post({path, date, title, excerpt}) {
+  return (
+    <div key={path}>
+      <h3
+        style={{
+          marginBottom: rhythm(1 / 4),
+        }}
+      >
+        <Link
+          style={{
+            textDecoration: 'none',
+            color: cutePurple.hex(),
+            ':hover': {
+              color: darkPurple.hex(),
+              textDecoration: 'underline',
+            }
+          }}
+          to={path}
+        >
+          {title}
+        </Link>
+      </h3>
+      <small>{date}</small>
+      <p dangerouslySetInnerHTML={{ __html: excerpt }} />
+    </div>
+  );
 }
 
 BlogIndex.propTypes = {

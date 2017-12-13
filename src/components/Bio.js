@@ -9,7 +9,7 @@ import media from '../utils/media'
 class Bio extends React.Component {
   render() {
     return (
-      <div style={styles.container}>
+      <div style={[styles.container]}>
         <img src={profilePic} alt={`Mallory Allen`} style={styles.profilePic} />
         <div style={styles.blurb}>
           <p style={styles.blurbIntro}>

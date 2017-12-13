@@ -40,7 +40,7 @@ class Icon extends React.PureComponent {
         dangerouslySetInnerHTML={{ __html: source.body }}
       />
     )
-    debugger;
+
     return linkTo ? (
       <a href={linkTo} {...linkOptions}>
         {icon}
