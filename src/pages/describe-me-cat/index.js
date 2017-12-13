@@ -186,7 +186,7 @@ const styles = {
 
 export const FRONT_MATTER = {
   path: '/describe-me-cat',
-  title: 'Describe my cat',
+  title: 'Describe My Cat',
   date: '12 December, 2017',
   excerpt: STRINGS.DESCRIPTION,
 };
