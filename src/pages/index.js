@@ -8,12 +8,22 @@ import { rhythm } from '../utils/typography'
 import { cutePurple, darkPurple } from '../utils/colors'
 import Bio from '../components/Bio'
 import Fade from '../components/Fade'
-import {FRONT_MATTER as DESCRIBE_CAT_FRONT_MATTER} from './describe-me-cat';
+import {POST_DATA as DESCRIBE_CAT_POST_DATA} from './describe-me-cat';
 
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    const posts = get(this, 'props.data.allMarkdownRemark.edges');
+
+    const postNodes = [
+      ...posts.map(({node}) => node),
+      // add toy app posts here
+      DESCRIBE_CAT_POST_DATA,
+    ].sort((postA, postB) => {
+      const dateA = new Date(get(postA, 'frontmatter.date'));
+      const dateB = new Date(get(postB, 'frontmatter.date'));
+      return dateA < dateB;
+    })
 
     return (
       <div>
@@ -21,15 +31,14 @@ class BlogIndex extends React.Component {
           <Helmet title={get(this, 'props.data.site.siteMetadata.title')} />
           <Bio />
           <hr />
-          <Post {...DESCRIBE_CAT_FRONT_MATTER} />
-          {posts.map(post => {
-            if (post.node.path !== '/404/') {
-              const title = get(post, 'node.frontmatter.title') || post.node.path
+          {postNodes.map(post => {
+            if (post.path !== '/404/') {
+              const title = get(post, 'frontmatter.title') || post.path
               return (
                 <Post
                   key={title}
-                  excerpt={post.node.excerpt}
-                  {...post.node.frontmatter}
+                  excerpt={post.excerpt}
+                  {...post.frontmatter}
                 />
               )
             }

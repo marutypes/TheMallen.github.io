@@ -194,10 +194,12 @@ const styles = {
   }
 }
 
-export const FRONT_MATTER = {
-  path: '/describe-me-cat',
-  title: 'Describe My Cat',
-  date: '12 December, 2017',
+export const POST_DATA = {
+  frontmatter: {
+    title: 'Describe My Cat',
+    date: '12 December, 2017',
+    path: '/describe-me-cat',
+  },
   excerpt: STRINGS.DESCRIPTION,
 };
 
