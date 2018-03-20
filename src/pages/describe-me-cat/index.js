@@ -9,7 +9,7 @@ import { cutePurple, darkPurple, white } from '../../utils/colors'
 const DESCRIPTION_SERVICE ='https://eastus.api.cognitive.microsoft.com' +
   '/vision/v1.0/describe?maxCandidates=12'
 const RANDOM_CAT = 'http://thecatapi.com/api/images/get?format=src&type=jpg'
-const KEY = '34b06f42df5849649b287bb96ff76b40'
+const KEY = '5c61d9578d954431b57903f74cf96fe6'
 
 const STRINGS = {
   NO_CAT: 'I only describe cats, and I cannot discern a cat here.',
@@ -123,7 +123,6 @@ class DescribeMyCat extends React.Component {
 
         const formData = new FormData()
         formData.append('image', blob)
-
         return fetch(DESCRIPTION_SERVICE, {
           method: 'POST',
           headers: {
