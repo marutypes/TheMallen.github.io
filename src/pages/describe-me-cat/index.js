@@ -8,7 +8,7 @@ import { cutePurple, darkPurple, white } from '../../utils/colors'
 
 const DESCRIPTION_SERVICE ='https://eastus.api.cognitive.microsoft.com' +
   '/vision/v1.0/describe?maxCandidates=12'
-const RANDOM_CAT = 'http://thecatapi.com/api/images/get?format=src&type=jpg'
+const RANDOM_CAT = 'https://cataas.com/cat'
 const KEY = '5c61d9578d954431b57903f74cf96fe6'
 
 const STRINGS = {
