@@ -1,5 +1,5 @@
 # Mal Blog
-This mah [Gatsby](http://gatsbyjs.org) blog 😊
+This is my (Old and out-dated) [Gatsby](http://gatsbyjs.org) blog 😊
 
 ## Running in development
 `gatsby develop`
